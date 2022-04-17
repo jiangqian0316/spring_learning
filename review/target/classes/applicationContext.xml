@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+        <import resource="applicationContext-injectionTest.xml"/>
+        <import resource="applicationContext-jdbc.xml"/>
+
+        <!--  scope singleton 单例模式(默认模式)  prototype 多例模式   -->
+<!--    <bean id="userDao" class="com.jqq.dao.Impl.UserDaoImpl" scope="singleton" />-->
+        <!--工厂静态方法-->
+        <!--<bean id="userDao" class="com.jqq.Factory.StaticFactory" factory-method="getUserDao"/>
+-->
+        <!--工厂实例方法-->
+        <bean id="factory"  class="com.jqq.Factory.DynamicFactory"/>
+        <bean  id="userDao" factory-bean="factory" factory-method="getUserDao"/>
+        <!--普通注入-->
+        <!--<bean id="userService" class="com.jqq.service.impl.UserServiceImpl">
+                <property name="userDao" ref="userDao"/>
+        </bean>-->
+        <!--P命名空间 userDao-ref中的userDao是set方法中的Dao-->
+        <!--<bean id="userService" class="com.jqq.service.impl.UserServiceImpl" p:userDao-ref="userDao"/>-->
+
+        <!--注解扫描-->
+        <context:component-scan base-package="com.jqq"/>
+</beans>
