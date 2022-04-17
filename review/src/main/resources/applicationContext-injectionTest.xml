@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id="user1" class="com.jqq.date.User">
+            <property name="id" value="1"/>
+            <property name="gender" value="男"/>
+            <property name="age" value="12"/>
+        </bean>
+
+        <bean id="user2" class="com.jqq.date.User">
+            <property name="id" value="2"/>
+            <property name="gender" value="男"/>
+            <property name="age" value="123"/>
+        </bean>
+
+        <bean id="user3" class="com.jqq.date.User">
+            <property name="id" value="3"/>
+            <property name="gender" value="男"/>
+            <property name="age" value="1234"/>
+        </bean>
+
+        <bean id="injection" class="com.jqq.test.Injection">
+            <property name="stringList">
+                <list>
+                    <value>111</value>
+                    <value>222</value>
+                    <value>333</value>
+                </list>
+            </property>
+            <property name="userMap">
+                <map>
+                    <entry key="u1" value-ref="user1"/>
+                    <entry key="u2" value-ref="user2"/>
+                    <entry key="u3" value-ref="user3"/>
+                </map>
+            </property>
+            <property name="properties">
+                <props>
+                    <prop key="test1" >测试1</prop>
+                    <prop key="test2" >测试2</prop>
+                    <prop key="test3" >测试3</prop>
+                </props>
+            </property>
+        </bean>
+</beans>
